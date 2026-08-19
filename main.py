@@ -425,10 +425,10 @@ def launch_instance():
     # Step 5 - Launch Instance if it's not already exist and running
     instance_exist_flag = check_instance_state_and_write(oci_tenancy, OCI_COMPUTE_SHAPE, tries=1)
 
-if OCI_COMPUTE_SHAPE == "VM.Standard.A1.Flex":
-    shape_config = oci.core.models.LaunchInstanceShapeConfigDetails(ocpus=2, memory_in_gbs=12)
-else:
-    shape_config = oci.core.models.LaunchInstanceShapeConfigDetails(ocpus=2, memory_in_gbs=12)
+    if OCI_COMPUTE_SHAPE == "VM.Standard.A1.Flex":
+        shape_config = oci.core.models.LaunchInstanceShapeConfigDetails(ocpus=2, memory_in_gbs=12)
+    else:
+        shape_config = oci.core.models.LaunchInstanceShapeConfigDetails(ocpus=2, memory_in_gbs=12)
 
     while not instance_exist_flag:
         try:
