@@ -428,7 +428,7 @@ def launch_instance():
     if OCI_COMPUTE_SHAPE == "VM.Standard.A1.Flex":
         shape_config = oci.core.models.LaunchInstanceShapeConfigDetails(ocpus=4, memory_in_gbs=24)
     else:
-        shape_config = oci.core.models.LaunchInstanceShapeConfigDetails(ocpus=1, memory_in_gbs=1)
+        shape_config = oci.core.models.LaunchInstanceShapeConfigDetails(ocpus=2, memory_in_gbs=12)
 
     while not instance_exist_flag:
         try:
