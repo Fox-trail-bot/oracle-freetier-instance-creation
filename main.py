@@ -378,14 +378,18 @@ def launch_instance():
         Exception: Raises an exception if an unexpected error occurs.
     """
     # Step 1 - Get TENANCY
+    print("STEP 4: About to call get_user", flush=True)
     user_info = execute_oci_command(iam_client, "get_user", OCI_USER_ID)
     oci_tenancy = user_info.compartment_id
+    print(f"STEP 5: Got tenancy = {oci_tenancy}", flush=True)
     logging.info("OCI_TENANCY: %s", oci_tenancy)
 
     # Step 2 - Get AD Name
+    print("STEP 6: About to list availability domains", flush=True)
     availability_domains = execute_oci_command(iam_client,
                                                "list_availability_domains",
                                                compartment_id=oci_tenancy)
+    print("STEP 7: Got availability domains", flush=True)
     oci_ad_name = [item.name for item in availability_domains if
                    any(item.name.endswith(oct_ad) for oct_ad in OCT_FREE_AD.split(","))]
     oci_ad_names = itertools.cycle(oci_ad_name)
