@@ -50,4 +50,4 @@ jobs:
           sed -i "s|ASSIGN_PUBLIC_IP=false|ASSIGN_PUBLIC_IP=true|" oci.env
 
       - name: Run instance creation script
-        run: python main.py
+        run: python -u main.py
