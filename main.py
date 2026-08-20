@@ -399,14 +399,14 @@ def launch_instance():
     print(f"STEP 8: OCI_SUBNET_ID from env = {OCI_SUBNET_ID}", flush=True)
     oci_subnet_id = OCI_SUBNET_ID
     if not oci_subnet_id:
-                print("STEP 9: Subnet not set, listing subnets", flush=True)
+        print("STEP 9: Subnet not set, listing subnets", flush=True)
         subnets = execute_oci_command(network_client,
                                       "list_subnets",
                                       compartment_id=oci_tenancy)
         oci_subnet_id = subnets[0].id
         print("STEP 10: Got subnet from list", flush=True)
     logging.info("OCI_SUBNET_ID: %s", oci_subnet_id)
-print(f"STEP 11: Final subnet_id = {oci_subnet_id}", flush=True)
+    print(f"STEP 11: Final subnet_id = {oci_subnet_id}", flush=True)
 
     # Step 4 - Get Image ID of Compute Shape
     if not OCI_IMAGE_ID:
