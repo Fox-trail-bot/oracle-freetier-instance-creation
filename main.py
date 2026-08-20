@@ -411,7 +411,7 @@ def launch_instance():
     # Step 4 - Get Image ID of Compute Shape
     print(f"STEP 12: OCI_IMAGE_ID from env = {OCI_IMAGE_ID}", flush=True)
     if not OCI_IMAGE_ID:
-                print("STEP 13: About to list images", flush=True)
+        print("STEP 13: About to list images", flush=True)
         images = execute_oci_command(
             compute_client,
             "list_images",
