@@ -409,13 +409,16 @@ def launch_instance():
     print(f"STEP 11: Final subnet_id = {oci_subnet_id}", flush=True)
 
     # Step 4 - Get Image ID of Compute Shape
+    print(f"STEP 12: OCI_IMAGE_ID from env = {OCI_IMAGE_ID}", flush=True)
     if not OCI_IMAGE_ID:
+                print("STEP 13: About to list images", flush=True)
         images = execute_oci_command(
             compute_client,
             "list_images",
             compartment_id=oci_tenancy,
             shape=OCI_COMPUTE_SHAPE,
         )
+        print("STEP 14: Got images list", flush=True)
         shortened_images = [{key: json.loads(str(image))[key] for key in IMAGE_LIST_KEYS
                              } for image in images]
         write_into_file('images_list.json', json.dumps(shortened_images, indent=2))
@@ -423,6 +426,7 @@ def launch_instance():
                             image.operating_system == OPERATING_SYSTEM and
                             image.operating_system_version == OS_VERSION)
         logging.info("OCI_IMAGE_ID: %s", oci_image_id)
+        print(f"STEP 15: Selected image_id = {oci_image_id}", flush=True)
     else:
         oci_image_id = OCI_IMAGE_ID
 
