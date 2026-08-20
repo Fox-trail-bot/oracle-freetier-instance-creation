@@ -283,6 +283,7 @@ def handle_errors(command, data, log):
         if (data["code"] in ("TooManyRequests", "Out of host capacity.", 'InternalError')) \
                 or (data["message"] in ("Out of host capacity.", "Bad Gateway")):
             log.info("Command: %s--\nOutput: %s", command, data)
+            print(f"RETRY: Capacity not available (code={data.get('code')}), waiting {WAIT_TIME}s...", flush=True)
             time.sleep(WAIT_TIME)
             return True
 
