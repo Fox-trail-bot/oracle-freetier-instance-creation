@@ -18,7 +18,7 @@ import requests
 
 # Load environment variables from .env file
 load_dotenv('oci.env')
-
+print("STEP 1: dotenv loaded", flush=True)
 ARM_SHAPE = "VM.Standard.A1.Flex"
 E2_MICRO_SHAPE = "VM.Standard.E2.1.Micro"
 
@@ -45,7 +45,9 @@ DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK", "").strip()
 config = configparser.ConfigParser()
 try:
     config.read(OCI_CONFIG)
+    print("STEP 2: config read successfully", flush=True)
     OCI_USER_ID = config.get('DEFAULT', 'user')
+    print(f"STEP 3: OCI_USER_ID = {OCI_USER_ID}", flush=True)
     if OCI_COMPUTE_SHAPE not in (ARM_SHAPE, E2_MICRO_SHAPE):
         raise ValueError(f"{OCI_COMPUTE_SHAPE} is not an acceptable shape")
     env_has_spaces = any(isinstance(confg_var, str) and " " in confg_var
