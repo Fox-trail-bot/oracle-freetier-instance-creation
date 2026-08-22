@@ -4,7 +4,9 @@ on:
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
-
+concurrency:
+  group: oci-launch
+  cancel-in-progress: false
 jobs:
   create-instance:
     runs-on: ubuntu-latest
